@@ -6,6 +6,23 @@
   <router-view/>
 </template>
 
+
+<script>
+  import pixabay from './pixabay';
+  import { onMounted } from 'vue';
+
+  export default {
+    name: "App",
+    setup() {
+      const pixBay = pixabay();
+
+      onMounted(() => {
+        pixBay.getImageByPhrase("Red Roses")
+      })
+    }
+  }
+</script>
+
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
