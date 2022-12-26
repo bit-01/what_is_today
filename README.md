@@ -29,7 +29,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 - Semantic HTML5 markup
 - CSS custom properties
 - Grid System
-- [Calendarific API Module](https://calendarific.com)
+- [Calendarific API](https://calendarific.com)
+- [REST Countries API](https://restcountries.com)
 - [Pixabay API](https://pixabay.com/)
 - [Vue 3](https://vuejs.org/) - JS Framework
 - [Axios](https://axios-http.com) - Promise based HTTP Client
