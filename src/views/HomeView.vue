@@ -9,7 +9,11 @@
       </div>
       <div>
         <label id="country_label" for="h_country">Country</label>
-       
+        <select :value="h_country" name="h_country" id="h_country" >
+          <option v-for="ac in a_countries" :key="ac['iso-3166']" :value="ac['iso-3166']">
+            {{ ac.fData.flag }} {{ ac.country_name }} ({{ ac["iso-3166"] }})
+          </option>
+        </select>
       </div>
 
       
@@ -22,22 +26,40 @@ import { ref, onMounted } from 'vue';
 import Datepicker from '@vuepic/vue-datepicker'
 import '@vuepic/vue-datepicker/dist/main.css'
 import clapi from '@/calendarific'
+import getIP from '@/ip'
 
 export default {
   name: 'HomeView',
   components: {
-    Datepicker
+    Datepicker,
   },
   setup() {
     const h_date = ref(new Date())
+    const h_country = ref('')
+    const a_countries = ref([])
     const _clapi =  clapi()
-    
+
     onMounted(() => {
       // _clapi.getHolidays({h_date: h_date.value, country: "US"})
-      _clapi.getAllCountries()
+      _clapi.getAllCountries().then(() => {
+        a_countries.value = _clapi.allCountries.value
+        getIP().then((data) => {  
+          h_country.value = data.country
+        })
+       
+
+      })
+      
+      
     })
 
-    return {h_date}
+    
+    return {
+      h_date, 
+      h_country, 
+      a_countries,
+      
+    }
   }
 
   
@@ -70,5 +92,18 @@ export default {
    --dp-success-color: var(--wit-orange);
    --dp-danger-color: var(--wit-red);
    --dp-icon-color: var(--wit-red);
+}
+
+select {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  font-size: .7em;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  padding: 6px 12px;
+  background: var(--wit-white);
+  color: var(--wit-gray-dark);
 }
 </style>
