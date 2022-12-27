@@ -142,6 +142,7 @@ select {
 .main .h_container {
   box-shadow: rgba(0,0,0,.1) 0 0 20px 1px;
   border-radius: 7px;
+  background-color: var(--wit-white);
 }
 .h_content {
   padding: 1rem;
@@ -161,7 +162,6 @@ select {
 @media (min-width: 992px) {
   .date {
     grid-template-columns: repeat(3, auto);
-
   }
   .home .main {
     grid-template-columns: repeat(4, auto);
