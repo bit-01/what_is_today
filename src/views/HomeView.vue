@@ -39,6 +39,11 @@
         </div>
       </div>
     </div>
+    <div class="msg">
+      <div class="h_container">
+        <p>No Holidays were found !</p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -139,7 +144,7 @@ select {
   text-align: left;
 }
 
-.main .h_container {
+.h_container {
   box-shadow: rgba(0,0,0,.1) 0 0 20px 1px;
   border-radius: 7px;
   background-color: var(--wit-white);
@@ -158,7 +163,12 @@ select {
   width: 100%;
   border-radius: 7px 7px 0 0;
 }
-
+.msg .h_container {
+  padding: 1em;
+  font-weight: bold;
+  text-align: center;
+  color: var(--wit-red);
+}
 @media (min-width: 992px) {
   .date {
     grid-template-columns: repeat(3, auto);
