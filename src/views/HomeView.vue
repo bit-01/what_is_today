@@ -2,10 +2,24 @@
   <div class="home">
     <h1>what holiday is today ?</h1>
 
-    <div class="date">
+    <form method="GET" action="/" class="date">
       <div>
         <label id="date_label" for="h_date">Date</label>
         <Datepicker v-model="h_date" name="h_date" id="h_date" aria-labelledby="date_label" :enable-time-picker="false" format="MMMM dd, yyyy"></Datepicker>
+      </div>
+      <div >
+        <label>Date Options</label>
+        <div class="date_opt">
+          <label for="year">
+            <input type="checkbox" id="year" :checked="h_d_opt.year" name="year" disabled/> Year 
+          </label>
+          <label for="month" title="Would you like to include the month in the search ?">
+            <input type="checkbox" id="month" title="Would you like to include the month in the search ?" :checked="h_d_opt.month" name="month" /> Month 
+          </label>
+          <label for="day" title="Would you like to include the day in the search ?">
+            <input type="checkbox" id="day" title="Would you like to include the day in the search ?" :checked="h_d_opt.day" name="day" /> Day 
+          </label>
+        </div>
       </div>
       <div>
         <label id="country_label" for="h_country">Country</label>
@@ -24,9 +38,8 @@
           </option>
         </select>
       </div>
-
-      
-    </div>
+      <button type="submit" name="btn_submit">Submit</button>
+    </form>
 
     <div class="main">
       <div class="h_container" v-for="s in 6" :key="s">
@@ -60,6 +73,11 @@ export default {
     Datepicker,
   },
   setup() {
+    const h_d_opt = ref({
+      year: true,
+      month: true,
+      day: true
+    })
     const h_date = ref(new Date())
     const h_country = ref('')
     const h_type = ref('')
@@ -88,7 +106,8 @@ export default {
       h_type,
       a_countries,
       a_types,
-      capitalizeWord
+      capitalizeWord,
+      h_d_opt
     }
   }
 
@@ -97,6 +116,11 @@ export default {
 </script>
 
 <style>
+.date_opt {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
 .date {
   width: 100%;
   display: grid;
@@ -104,8 +128,9 @@ export default {
   column-gap: .5em;
   row-gap: .5em;
   margin-bottom: 1.5em;
+  align-items: center;
 }
-.date > div {
+.date > div, .date > button {
   font-weight: 500;
   color: var(--wit-white);
   background-color: var(--wit-red);
@@ -169,9 +194,23 @@ select {
   text-align: center;
   color: var(--wit-red);
 }
+.date > button {
+  border: var(--wit-red) 2px solid;
+  background: var(--wit-white);
+  color: var(--wit-red);
+  font-family: inherit;
+  transition: .5s all;
+}
+.date > button:hover {
+  border: none;
+  background: var(--wit-red);
+  color: var(--wit-white);
+  cursor: pointer;
+}
+
 @media (min-width: 992px) {
   .date {
-    grid-template-columns: repeat(3, auto);
+    grid-template-columns: repeat(5, auto);
   }
   .home .main {
     grid-template-columns: repeat(4, auto);
