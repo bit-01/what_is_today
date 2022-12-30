@@ -19,10 +19,11 @@ export default function pixabay() {
             params: {
                 q: phrase
             }
+        }).then(() => {
+            images.value = response.data
         }).catch((error) => {
             errors.value = error
         })
-        images.value = response.data
     }
 
     return {images, errors, getImageByPhrase}

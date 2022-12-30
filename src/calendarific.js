@@ -37,7 +37,7 @@ export default function calpi() {
         }).catch((error) => {
             errors.value = error
         })
-        if(response.data.meta.code == 200) {
+        if(response.data.meta.code == 200 && response.data.response.holidays.length > 0) {
             holidays.value = response.data.response.holidays
         } else {
            errors.value = response.data.meta.error_detail
@@ -64,6 +64,7 @@ export default function calpi() {
             })
         })  
     }
+
 
     return {holidays, errors, getHolidays, getAllCountries, allCountries}
 }
