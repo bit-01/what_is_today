@@ -22,15 +22,22 @@ export default function calpi() {
     }
 
     const getHolidays = async (prms) => {
+        let ps = {
+            year: prms.h_date.getFullYear(),
+            country: prms.country
+        }
+        
+        if (prms.date_opt.month == true) ps.month = prms.h_date.getMonth() + 1
+        if(prms.date_opt.day == true) ps.day = prms.h_date.getDate()
+        
+        if(prms.type != "") ps.type = prms.type
+
         let response = await _calpi.get(paths.holidays, {
-            params: {
-                year: prms.h_date.getFullYear(),
-                country: "*"
-            }
+            params: ps
         }).catch((error) => {
             errors.value = error
         })
-        if(response.data.meta.code == 200 && response.data.response.count > 0) {
+        if(response.data.meta.code == 200) {
             holidays.value = response.data.response.holidays
         } else {
            errors.value = response.data.meta.error_detail

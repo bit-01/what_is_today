@@ -1,4 +1,6 @@
 <template>
+  <LoadSpinner :loading="loading" />
+
   <div class="container">
     <header>
       <nav>
@@ -53,6 +55,28 @@
     </div>
   </footer>
 </template>
+
+<script>
+// import {ref} from 'vue'
+import LoadSpinner from '@/components/LoadSpinner.vue'
+import { ref, provide } from 'vue';
+
+  export default {
+    name: "App",
+    components: {
+      LoadSpinner
+    },
+    setup() {
+      const loading = ref('true')
+      provide('loading', loading)
+
+      return {loading}
+    }
+
+
+  }
+</script>
+
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap');
@@ -135,4 +159,5 @@ footer h2, footer, footer a {
     text-align: start;
   }
 }
+
 </style>
