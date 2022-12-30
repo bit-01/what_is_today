@@ -2,7 +2,7 @@
   <div class="home">
     <h1>what holiday is today ?</h1>
 
-    <form method="GET" action="/" class="date">
+    <form method="GET" action="/what_is_today" class="date">
       <div>
         <label id="date_label" for="h_date">Date</label>
         <Datepicker v-model="h_date" name="h_date" id="h_date" aria-labelledby="date_label" :enable-time-picker="false" format="MMMM dd, yyyy" :min-date="new Date('1/1/1777')" :max-date="new Date('1/12/2049')"></Datepicker>

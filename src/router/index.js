@@ -9,7 +9,7 @@ const routes = [
   },
   {
     path: '/what_is_today',
-    name: 'home',
+    name: 'homeProd',
     component: HomeView
   },
   {
