@@ -8,6 +8,11 @@ const routes = [
     component: HomeView
   },
   {
+    path: '/what_is_today',
+    name: 'home',
+    component: HomeView
+  },
+  {
     path: '/month/:mon',
     name: 'months',
     component: HomeView
